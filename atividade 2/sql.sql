@@ -145,33 +145,41 @@ INSERT INTO
 
 	
 select avg(emp.salario) from public.empregado as emp
-
+--1
 select distinct  count(*) from public.empregado as emp
 	inner join public.trabalha_em as trab on trab.essn = emp.ssn
 	inner join public.projeto as pro on pro.pnumero = trab.pno
 		where trab.horas > 10 and emp.dno = 5 and pro.pjnome = 'ProductX'
 		
+--2
 select emp.pnome,emp.unome, dep.nome_dependente from public.empregado as emp
 	inner join public.dependente as dep on dep.essn = emp.ssn
 		where emp.pnome = dep.nome_dependente
 		
+--3
 select * from empregado as emp
 	where emp.superssn = '333445555'
 	
-//falta fazer
-select distinct  * from empregado as emp 
-	inner join projeto as proj on proj.dnum = emp.dno
-	inner join trabalha_em as trab on trab.pno = proj.pnumero
-		where proj.pjnome = 'Newbenefits'
+--4
+SELECT pnome, horas from empregado 
+	INNER JOIN trabalha_em ON ssn = essn 
+	INNER JOIN projeto ON pnumero = pno 
+		WHERE PJNOME = 'Newbenefits' 
+		
+--5
 		
 select sum(emp.salario) from empregado as emp
 	inner join departamento as dep on dep.dnumero = emp.dno
 		where dep.dnome = 'Research'
-//falta fazer
-select sum(emp.salario) from empregado as emp
-	inner join projeto as proj on proj.dnum = emp.dno
-		where proj.pjnome = 'ProductX'
+	
+--6		
+SELECT SUM(salario) * 1.1 from empregado 
+	INNER JOIN trabalha_em ON ssn = essn 
+	INNER JOIN projeto ON pnumero = pno 
+		WHERE PJNOME = 'ProductX'
 
+
+--7
 select dep.dnome, avg(emp.salario) from empregado as emp
 	inner join departamento as dep on dep.dnumero = emp.dno
 	group by dep.dnome
