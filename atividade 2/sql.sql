@@ -144,7 +144,7 @@ INSERT INTO
 		('999887777', 30, 30);
 
 	
-select avg(emp.salario) from public.empregado as emp
+
 --1
 select distinct  count(*) from public.empregado as emp
 	inner join public.trabalha_em as trab on trab.essn = emp.ssn
@@ -183,6 +183,9 @@ SELECT SUM(salario) * 1.1 from empregado
 select dep.dnome, avg(emp.salario) from empregado as emp
 	inner join departamento as dep on dep.dnumero = emp.dno
 	group by dep.dnome
+	
+--8
+select avg(emp.salario) from public.empregado as emp
 
 select * from departamento
 select * from depto_localizacoes
